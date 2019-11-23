@@ -6,6 +6,7 @@
 package modulos;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 public class ListaTarefasTrabalho extends ListaTarefas
 {
    private String tipo = "Trabalho";
-    public ListaTarefasTrabalho(String nome_tarefa) 
+    public ListaTarefasTrabalho(String nome_tarefa,String dat) 
     {
-        super(nome_tarefa);
+        super(nome_tarefa,dat);
     }
 
     public String getTipo() 

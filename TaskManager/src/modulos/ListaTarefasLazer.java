@@ -6,6 +6,7 @@
 package modulos;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 public class ListaTarefasLazer extends ListaTarefas 
 {
     private String tipo="lazer";
-    public ListaTarefasLazer(String nome_tarefa) 
+    public ListaTarefasLazer(String nome_tarefa,String dat) 
     {
-        super(nome_tarefa);
+        super(nome_tarefa,dat);
     }
 
     public String getTipo() 

@@ -35,7 +35,6 @@ public class OpcoesTarefas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jAdicionar = new javax.swing.JButton();
         jListar = new javax.swing.JButton();
-        jProgresso = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSair = new javax.swing.JMenu();
         jSair = new javax.swing.JMenuItem();
@@ -56,13 +55,6 @@ public class OpcoesTarefas extends javax.swing.JFrame {
             }
         });
 
-        jProgresso.setText("Progresso");
-        jProgresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jProgressoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -73,10 +65,6 @@ public class OpcoesTarefas extends javax.swing.JFrame {
                 .addGap(86, 86, 86)
                 .addComponent(jListar)
                 .addContainerGap(92, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jProgresso)
-                .addGap(158, 158, 158))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,9 +73,7 @@ public class OpcoesTarefas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAdicionar)
                     .addComponent(jListar))
-                .addGap(18, 18, 18)
-                .addComponent(jProgresso)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         jMenuSair.setText("Sair");
@@ -131,11 +117,6 @@ public class OpcoesTarefas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jSairActionPerformed
 
-    private void jProgressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProgressoActionPerformed
-       ProgressoTarefas view = new ProgressoTarefas(add);
-       view.setVisible(true);
-    }//GEN-LAST:event_jProgressoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -177,7 +158,6 @@ public class OpcoesTarefas extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuSair;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jProgresso;
     private javax.swing.JMenuItem jSair;
     // End of variables declaration//GEN-END:variables
 }

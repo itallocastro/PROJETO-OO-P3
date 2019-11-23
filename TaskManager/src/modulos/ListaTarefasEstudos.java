@@ -6,6 +6,7 @@
 package modulos;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,9 +17,9 @@ public class ListaTarefasEstudos extends ListaTarefas
     private String nome_materia;
     private String tipo="Estudo";
     
-    public ListaTarefasEstudos(String nome_tarefa,String nome_materia) 
+    public ListaTarefasEstudos(String nome_tarefa,String nome_materia, String dat) 
     {
-        super(nome_tarefa);
+        super(nome_tarefa,dat);
         this.nome_materia = nome_materia;
     }
 

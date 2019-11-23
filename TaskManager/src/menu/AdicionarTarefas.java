@@ -64,6 +64,8 @@ public class AdicionarTarefas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jData = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jAddMaterias = new javax.swing.JMenu();
         jAdicionar = new javax.swing.JMenuItem();
@@ -99,6 +101,10 @@ public class AdicionarTarefas extends javax.swing.JFrame {
 
         jLabel3.setText("Matéria(Somente para o tipo de estudo)");
 
+        jData.setText("dd/mm/yyyy");
+
+        jLabel4.setText("Data");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,18 +120,21 @@ public class AdicionarTarefas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jNomeTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(52, 52, 52)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jMaterias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jData, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,12 +143,14 @@ public class AdicionarTarefas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jNomeTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAdd)
@@ -211,19 +222,19 @@ public class AdicionarTarefas extends javax.swing.JFrame {
        String tipo =(String) jTipos.getSelectedItem();
         if(tipo.equals("Estudos") && (!jNomeTarefa.getText().equals("")))
         {
-            ListaTarefasEstudos novo_estudo = new ListaTarefasEstudos(jNomeTarefa.getText(),String.valueOf(jMaterias.getSelectedItem()));
+            ListaTarefasEstudos novo_estudo = new ListaTarefasEstudos(jNomeTarefa.getText(),String.valueOf(jMaterias.getSelectedItem()),jData.getText());
             estudos.add(novo_estudo);           
              JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
         }
         else if(tipo.equals("Trabalho") && (!jNomeTarefa.getText().equals("")))
         {
-            ListaTarefasTrabalho nova_tarefa = new ListaTarefasTrabalho(jNomeTarefa.getText());
+            ListaTarefasTrabalho nova_tarefa = new ListaTarefasTrabalho(jNomeTarefa.getText(),jData.getText());
             trabalho.add(nova_tarefa);
             JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
         }
         else if(tipo.equals("Lazer") && (!jNomeTarefa.getText().equals("")))
         {
-            ListaTarefasLazer novo_lazer = new ListaTarefasLazer(jNomeTarefa.getText());
+            ListaTarefasLazer novo_lazer = new ListaTarefasLazer(jNomeTarefa.getText(),jData.getText());
             lazer.add(novo_lazer);
             JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
         }
@@ -289,9 +300,11 @@ public class AdicionarTarefas extends javax.swing.JFrame {
     private javax.swing.JButton jAdd;
     private javax.swing.JMenu jAddMaterias;
     private javax.swing.JMenuItem jAdicionar;
+    private javax.swing.JTextField jData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JComboBox<String> jMaterias;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField jNomeTarefa;
