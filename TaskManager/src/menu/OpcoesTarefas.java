@@ -17,6 +17,8 @@ public class OpcoesTarefas extends javax.swing.JFrame {
     /**
      * Creates new form OpcoesTarefas
      */
+     AdicionarTarefas add = new AdicionarTarefas();
+    
     public OpcoesTarefas() {
         initComponents();
     }
@@ -32,8 +34,8 @@ public class OpcoesTarefas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jAdicionar = new javax.swing.JButton();
-        jExcluir = new javax.swing.JButton();
         jListar = new javax.swing.JButton();
+        jProgresso = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSair = new javax.swing.JMenu();
         jSair = new javax.swing.JMenuItem();
@@ -47,17 +49,17 @@ public class OpcoesTarefas extends javax.swing.JFrame {
             }
         });
 
-        jExcluir.setText("Excluir");
-        jExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jExcluirActionPerformed(evt);
-            }
-        });
-
         jListar.setText("Listar");
         jListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jListarActionPerformed(evt);
+            }
+        });
+
+        jProgresso.setText("Progresso");
+        jProgresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jProgressoActionPerformed(evt);
             }
         });
 
@@ -66,13 +68,15 @@ public class OpcoesTarefas extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGap(86, 86, 86)
                 .addComponent(jAdicionar)
-                .addGap(69, 69, 69)
+                .addGap(86, 86, 86)
                 .addComponent(jListar)
-                .addGap(45, 45, 45))
+                .addContainerGap(92, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jProgresso)
+                .addGap(158, 158, 158))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,9 +84,10 @@ public class OpcoesTarefas extends javax.swing.JFrame {
                 .addGap(126, 126, 126)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAdicionar)
-                    .addComponent(jListar)
-                    .addComponent(jExcluir))
-                .addContainerGap(130, Short.MAX_VALUE))
+                    .addComponent(jListar))
+                .addGap(18, 18, 18)
+                .addComponent(jProgresso)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jMenuSair.setText("Sair");
@@ -114,24 +119,22 @@ public class OpcoesTarefas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarActionPerformed
-        
+         ListarTarefas view = new ListarTarefas(add);
+         view.setVisible(true);
     }//GEN-LAST:event_jListarActionPerformed
 
     private void jAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdicionarActionPerformed
-        AdicionarTarefas add = new AdicionarTarefas();
-        add.setVisible(true);
-       this.dispose();
-        
-        
+             add.setVisible(true);    
     }//GEN-LAST:event_jAdicionarActionPerformed
-
-    private void jExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExcluirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jExcluirActionPerformed
 
     private void jSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_jSairActionPerformed
+
+    private void jProgressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProgressoActionPerformed
+       ProgressoTarefas view = new ProgressoTarefas(add);
+       view.setVisible(true);
+    }//GEN-LAST:event_jProgressoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,11 +173,11 @@ public class OpcoesTarefas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAdicionar;
-    private javax.swing.JButton jExcluir;
     private javax.swing.JButton jListar;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuSair;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jProgresso;
     private javax.swing.JMenuItem jSair;
     // End of variables declaration//GEN-END:variables
 }

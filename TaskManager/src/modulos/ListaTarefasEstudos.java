@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class ListaTarefasEstudos extends ListaTarefas
 {
     private String nome_materia;
-
+    private String tipo="Estudo";
+    
     public ListaTarefasEstudos(String nome_tarefa,String nome_materia) 
     {
         super(nome_tarefa);
@@ -30,6 +31,12 @@ public class ListaTarefasEstudos extends ListaTarefas
     {
         this.nome_materia = nome_materia;
     }
+
+    public String getTipo() 
+    {
+        return tipo;
+    }
+    
     
        
 }

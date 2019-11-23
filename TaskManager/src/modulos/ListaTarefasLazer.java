@@ -5,16 +5,24 @@
  */
 package modulos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Castro Alves
  */
 public class ListaTarefasLazer extends ListaTarefas 
 {
-    
+    private String tipo="lazer";
     public ListaTarefasLazer(String nome_tarefa) 
     {
         super(nome_tarefa);
     }
+
+    public String getTipo() 
+    {
+        return tipo;
+    }
+    
     
 }

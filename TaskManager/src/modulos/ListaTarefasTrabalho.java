@@ -5,16 +5,24 @@
  */
 package modulos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Castro Alves
  */
 public class ListaTarefasTrabalho extends ListaTarefas
 {
-    
+   private String tipo = "Trabalho";
     public ListaTarefasTrabalho(String nome_tarefa) 
     {
         super(nome_tarefa);
     }
+
+    public String getTipo() 
+    {
+        return tipo;
+    }
+    
     
 }

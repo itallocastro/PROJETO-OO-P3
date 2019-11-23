@@ -28,6 +28,10 @@ public class AdicionarTarefas extends javax.swing.JFrame {
     
     
     
+    public int cont()
+    {
+        return estudos.size();
+    }
     public void atribui_string()
     {
         for(int i=0;i<cont;i++)
@@ -208,8 +212,7 @@ public class AdicionarTarefas extends javax.swing.JFrame {
         if(tipo.equals("Estudos") && (!jNomeTarefa.getText().equals("")))
         {
             ListaTarefasEstudos novo_estudo = new ListaTarefasEstudos(jNomeTarefa.getText(),String.valueOf(jMaterias.getSelectedItem()));
-            estudos.add(novo_estudo);
-            
+            estudos.add(novo_estudo);           
              JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
         }
         else if(tipo.equals("Trabalho") && (!jNomeTarefa.getText().equals("")))
@@ -230,20 +233,20 @@ public class AdicionarTarefas extends javax.swing.JFrame {
     }//GEN-LAST:event_jAddActionPerformed
 
     private void jVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVoltarActionPerformed
-        OpcoesTarefas volta = new OpcoesTarefas();
-        volta.setVisible(true);
         this.dispose();
+       
         
     }//GEN-LAST:event_jVoltarActionPerformed
-    public ArrayList retorna_estudos()
+    public ArrayList<ListaTarefasEstudos> retorna_estudos()
     {
+        
         return this.estudos;
     }
-    public ArrayList retorna_lazer()
+    public ArrayList<ListaTarefasLazer> retorna_lazer()
     {
         return this.lazer;
     }
-    public ArrayList retorna_trabalho()
+    public ArrayList<ListaTarefasTrabalho> retorna_trabalho()
     {
         return this.trabalho;
     }
