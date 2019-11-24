@@ -11,11 +11,23 @@ import java.util.logging.Logger;
  *
  * @author Castro Alves
  */
-public abstract class ListaTarefas 
+public abstract class ListaTarefas  implements Comparable<ListaTarefas>
 {
     private String nome_tarefa;
     private boolean concluse;
     private Date data;
+    private int horas;
+    private String horas_formatadas;
+
+    public int getHoras() 
+    {
+        return horas;
+    }
+
+    public void setHoras(int horas) 
+    {
+        this.horas = horas;
+    }
 
     public ListaTarefas(String nome_tarefa,String dat) 
     {
@@ -57,6 +69,32 @@ public abstract class ListaTarefas
     {
         this.data = data;
     }
+    
+    public String hora_format(int contador)
+    {
+        int segundo = contador % 60;
+        int minutos = contador / 60;
+        int horas1 = minutos / 60;
+        minutos %= 60;
+        return String.format("%02d:%02d:%02d", horas1,minutos,segundo);           
+                    
+                    
+    }
+    @Override
+    public int compareTo(ListaTarefas o) 
+    {
+        if(this.data.after(o.getData()))
+        {
+            
+            return 1;
+        }
+        else if(this.data.before(o.getData()))
+        {
+            return -1;
+        }
+        return 0;
+    }
+    
     
     
       

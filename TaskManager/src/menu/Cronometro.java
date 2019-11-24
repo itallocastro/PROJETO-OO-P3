@@ -23,9 +23,20 @@ public class Cronometro extends javax.swing.JFrame {
     private boolean rodar = false;
     private int[] array_dados = new int[1000]; 
     private int i = 0;
+    private int linha_table;
+    private ListarTarefas list;
+    private int v;
     public Cronometro() 
     {
         initComponents();
+    }
+
+    public Cronometro(int linha_selecionada,ListarTarefas listagem,int value) 
+    {
+        initComponents();
+         this.linha_table=linha_selecionada;
+         this.list = listagem;
+         this.v=value;
     }
 
     /**
@@ -130,6 +141,16 @@ public class Cronometro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public int getArray_dados(int indice) 
+    {
+        return array_dados[indice];
+    }
+
+    public void setArray_dados(int[] array_dados) 
+    {
+        this.array_dados = array_dados;
+    }
+
     private void jIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIniciarActionPerformed
       if(!rodar)
       {
@@ -178,14 +199,35 @@ public class Cronometro extends javax.swing.JFrame {
     }//GEN-LAST:event_jPausarActionPerformed
 
     private void jSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalvarActionPerformed
+        int resto;
         if(!rodar)
         {
-            if(contador!=0) array_dados[i++]=contador;
+            if(v==1)
+            {
+                list.controller.retorna_estudos().get(linha_table).setHoras(contador);
+            }
+            else if(v==2)
+            {
+                resto = list.controller.retorna_estudos().size();
+                list.controller.retorna_trabalho().get(linha_table%resto).setHoras(contador);
+                
+            }
+            else if(v==3)
+            {
+                resto=list.controller.retorna_estudos().size()+list.controller.retorna_trabalho().size();
+                list.controller.retorna_lazer().get(linha_table%resto).setHoras(contador);
+            }
+            if(contador!=0) array_dados[linha_table]=contador;
             contador = 0;
             jContagem.setText(String.format("00:00:00")); 
             tm.cancel();
 
             rodar = false;
+            list.carregartarefas();
+            list.setVisible(true);
+            this.dispose();
+            
+            
         }
     }//GEN-LAST:event_jSalvarActionPerformed
 

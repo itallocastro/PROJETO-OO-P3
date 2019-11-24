@@ -5,10 +5,12 @@
  */
 package menu;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import modulos.ListaTarefasEstudos;
 import modulos.ListaTarefasLazer;
 import modulos.ListaTarefasTrabalho;
@@ -19,17 +21,24 @@ import modulos.ListaTarefasTrabalho;
  */
 public final class ListarTarefas extends javax.swing.JFrame {
 
+    
     ArrayList<ListaTarefasEstudos> estudos = new ArrayList<>();
     ArrayList<ListaTarefasLazer> lazer = new ArrayList<>();
     ArrayList<ListaTarefasTrabalho> trabalho = new ArrayList<>();
     AdicionarTarefas controller;
     int cont1=0,cont2=0,cont3=0;
-    int realizados1,realizados2,realizados3;
-    GregorianCalendar d1= new GregorianCalendar();
+    int realizados1,realizados2,realizados3,horas_tarefas;
+   
+
+    SimpleDateFormat novo = new SimpleDateFormat();
     
     public ListarTarefas(AdicionarTarefas add) {
         initComponents();
         this.controller = add;
+        
+        //DefaultTableModel modelo = (DefaultTableModel) jTable.getModel();
+        //jTable.setRowSorter(new TableRowSorter(modelo));
+        
         carregartarefas();
         
         
@@ -51,7 +60,9 @@ public final class ListarTarefas extends javax.swing.JFrame {
         lazer = controller.retorna_lazer();
         trabalho = controller.retorna_trabalho();
         DefaultTableModel modelo = (DefaultTableModel) jTable.getModel();
-
+        Collections.sort(estudos);
+        Collections.sort(lazer);
+        Collections.sort(trabalho);
         modelo.setNumRows(0);
         int contador = estudos.size();
      
@@ -61,9 +72,10 @@ public final class ListarTarefas extends javax.swing.JFrame {
         {
             modelo.addRow(new Object[]{
                 estudos.get(i).getNome_tarefa(),
-                estudos.get(i).getTipo(),
-                estudos.get(i).getData(),
-                estudos.get(i).isConcluse()
+                estudos.get(i).getTipo(),//+" - "+estudos.get(i).getNome_materia(),
+                novo.format(estudos.get(i).getData()),
+                estudos.get(i).isConcluse(),
+                estudos.get(i).hora_format(estudos.get(i).getHoras())
             });
         }
         cont1=contador;
@@ -73,8 +85,9 @@ public final class ListarTarefas extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 trabalho.get(i).getNome_tarefa(),
                 trabalho.get(i).getTipo(),
-               trabalho.get(i).getData(),
-                trabalho.get(i).isConcluse()
+                novo.format(trabalho.get(i).getData()),
+                trabalho.get(i).isConcluse(),
+                trabalho.get(i).hora_format(trabalho.get(i).getHoras())
                 
             });
         }
@@ -85,8 +98,9 @@ public final class ListarTarefas extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 lazer.get(i).getNome_tarefa(),
                 lazer.get(i).getTipo(),
-                lazer.get(i).getData(),
-                lazer.get(i).isConcluse()
+                novo.format(lazer.get(i).getData()),
+                lazer.get(i).isConcluse(),
+                lazer.get(i).hora_format(lazer.get(i).getHoras())
             });
         }
         cont3=contador;
@@ -133,25 +147,26 @@ public final class ListarTarefas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jCronometrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null,  new Boolean(false)},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null,  new Boolean(false), null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome da Tarefa", "Tipo de Tarefa", "Data de realização", "CheckList"
+                "Nome da Tarefa", "Tipo de Tarefa", "Data de realização", "CheckList", "Tempo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -168,6 +183,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
             jTable.getColumnModel().getColumn(1).setResizable(false);
             jTable.getColumnModel().getColumn(2).setResizable(false);
             jTable.getColumnModel().getColumn(3).setResizable(false);
+            jTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jVoltar.setText("Voltar");
@@ -203,6 +219,13 @@ public final class ListarTarefas extends javax.swing.JFrame {
 
         jLabel3.setText("Progresso Lazer");
 
+        jCronometrar.setText("Cronometrar");
+        jCronometrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCronometrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -218,21 +241,23 @@ public final class ListarTarefas extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jExcluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jCronometrar)
+                                .addGap(31, 31, 31)
                                 .addComponent(jConcluido)))
                         .addGap(27, 27, 27))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jProgressBarLazer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jProgressBarEstudos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jProgressBarTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jProgressBarLazer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jProgressBarEstudos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jProgressBarTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addContainerGap(565, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +266,8 @@ public final class ListarTarefas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jExcluir)
-                    .addComponent(jConcluido))
+                    .addComponent(jConcluido)
+                    .addComponent(jCronometrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jVoltar)
@@ -265,21 +291,39 @@ public final class ListarTarefas extends javax.swing.JFrame {
     private void jExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExcluirActionPerformed
          DefaultTableModel modelo = (DefaultTableModel) jTable.getModel();
         int linha_excluir=jTable.getSelectedRow();
+        int resto;
         if(linha_excluir!=-1)
         {
+          
+          
             if(jTable.getValueAt(linha_excluir, 1).equals("Estudo"))
             {
+               if(controller.retorna_estudos().get(linha_excluir).isConcluse())
+               {
+                   realizados1--;
+               }
                controller.retorna_estudos().remove(linha_excluir);
+               
                cont1--;
             }
             else if(jTable.getValueAt(linha_excluir, 1).equals("Trabalho"))
             {
-               controller.retorna_trabalho().remove(linha_excluir);
+                resto=controller.retorna_estudos().size();
+                if(controller.retorna_trabalho().get(linha_excluir%resto).isConcluse())
+                {
+                   realizados2--;
+                }
+               controller.retorna_trabalho().remove(linha_excluir%resto);
                cont2--;
             }
             else if(jTable.getValueAt(linha_excluir, 1).equals("Lazer"))
             {
-               controller.retorna_lazer().remove(linha_excluir);
+                resto=controller.retorna_estudos().size()+ controller.retorna_trabalho().size();
+                if(controller.retorna_lazer().get(linha_excluir%resto).isConcluse())
+                {
+                   realizados3--;
+                }
+               controller.retorna_lazer().remove(linha_excluir%resto);
                cont3--;
             }
         
@@ -331,6 +375,43 @@ public final class ListarTarefas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jConcluidoActionPerformed
 
+    private void jCronometrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCronometrarActionPerformed
+        int linha_selecionada = jTable.getSelectedRow();
+        int resto;
+        if(linha_selecionada!=-1)
+        {
+           
+           
+           if(jTable.getValueAt(linha_selecionada, 1).equals("Estudo"))
+            {
+                Cronometro cro = new Cronometro(linha_selecionada,this,1);
+                cro.setVisible(true);
+               //controller.retorna_estudos().get(linha_selecionada).setHoras(horas_tarefas);
+            }
+            else if(jTable.getValueAt(linha_selecionada, 1).equals("Trabalho"))
+            {
+                Cronometro cro = new Cronometro(linha_selecionada,this,2);
+                cro.setVisible(true);
+                //resto=controller.retorna_estudos().size();
+                //controller.retorna_trabalho().get(linha_selecionada%resto).setHoras(horas_tarefas);
+                
+            }
+            else if(jTable.getValueAt(linha_selecionada, 1).equals("Lazer"))
+            {
+                Cronometro cro = new Cronometro(linha_selecionada,this,3);
+                cro.setVisible(true);
+                //resto=controller.retorna_estudos().size()+ controller.retorna_trabalho().size();
+                //controller.retorna_lazer().get(linha_selecionada%resto).setHoras(horas_tarefas);
+            }
+           
+           
+        }
+        else
+        {
+             JOptionPane.showMessageDialog(null, "Selecione uma linha");
+        }
+    }//GEN-LAST:event_jCronometrarActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -369,6 +450,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jConcluido;
+    private javax.swing.JButton jCronometrar;
     private javax.swing.JButton jExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -120,9 +120,9 @@ public class MenuDeOpcoes extends javax.swing.JFrame
     }//GEN-LAST:event_jSairItemActionPerformed
 
     private void jChamarCronometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChamarCronometroActionPerformed
-        Cronometro cro = new Cronometro();
+        /*Cronometro cro = new Cronometro();
         cro.setVisible(true);
-        this.dispose();
+        this.dispose();*/
     }//GEN-LAST:event_jChamarCronometroActionPerformed
 
     private void jTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTarefasActionPerformed
