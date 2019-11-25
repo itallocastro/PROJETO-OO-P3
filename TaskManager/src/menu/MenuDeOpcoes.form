@@ -89,10 +89,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              <Component id="jChamarCronometro" min="-2" max="-2" attributes="0"/>
+              <Component id="jChamarMetas" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               <Component id="jTarefas" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="104" max="32767" attributes="0"/>
+              <EmptySpace pref="137" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,7 +101,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jChamarCronometro" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jChamarMetas" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTarefas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="181" max="32767" attributes="0"/>
@@ -110,12 +110,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jChamarCronometro">
+    <Component class="javax.swing.JButton" name="jChamarMetas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cron&#xf4;metro"/>
+        <Property name="text" type="java.lang.String" value="Metas"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jChamarCronometroActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jChamarMetasActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jTarefas">

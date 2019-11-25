@@ -101,7 +101,7 @@ public class AdicionarTarefas extends javax.swing.JFrame {
 
         jLabel3.setText("Matéria(Somente para o tipo de estudo)");
 
-        jData.setText("dd/mm/yyyy");
+        jData.setText("31/12/1900");
 
         jLabel4.setText("Data");
 

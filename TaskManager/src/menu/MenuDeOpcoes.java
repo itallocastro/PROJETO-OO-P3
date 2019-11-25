@@ -37,7 +37,7 @@ public class MenuDeOpcoes extends javax.swing.JFrame
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jChamarCronometro = new javax.swing.JButton();
+        jChamarMetas = new javax.swing.JButton();
         jTarefas = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         Opcoes = new javax.swing.JMenu();
@@ -59,10 +59,10 @@ public class MenuDeOpcoes extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
 
-        jChamarCronometro.setText("Cronômetro");
-        jChamarCronometro.addActionListener(new java.awt.event.ActionListener() {
+        jChamarMetas.setText("Metas");
+        jChamarMetas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jChamarCronometroActionPerformed(evt);
+                jChamarMetasActionPerformed(evt);
             }
         });
 
@@ -96,17 +96,17 @@ public class MenuDeOpcoes extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(jChamarCronometro)
+                .addComponent(jChamarMetas)
                 .addGap(77, 77, 77)
                 .addComponent(jTarefas)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jChamarCronometro)
+                    .addComponent(jChamarMetas)
                     .addComponent(jTarefas))
                 .addContainerGap(181, Short.MAX_VALUE))
         );
@@ -119,11 +119,10 @@ public class MenuDeOpcoes extends javax.swing.JFrame
         System.exit(0);
     }//GEN-LAST:event_jSairItemActionPerformed
 
-    private void jChamarCronometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChamarCronometroActionPerformed
-        /*Cronometro cro = new Cronometro();
-        cro.setVisible(true);
-        this.dispose();*/
-    }//GEN-LAST:event_jChamarCronometroActionPerformed
+    private void jChamarMetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChamarMetasActionPerformed
+        MetasOpcoes meta = new MetasOpcoes();
+        meta.setVisible(true);
+    }//GEN-LAST:event_jChamarMetasActionPerformed
 
     private void jTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTarefasActionPerformed
         OpcoesTarefas adicionar = new OpcoesTarefas();
@@ -169,7 +168,7 @@ public class MenuDeOpcoes extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Opcoes;
     private javax.swing.JMenu Sair;
-    private javax.swing.JButton jChamarCronometro;
+    private javax.swing.JButton jChamarMetas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

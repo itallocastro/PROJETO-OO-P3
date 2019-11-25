@@ -26,6 +26,8 @@ public class Cronometro extends javax.swing.JFrame {
     private int linha_table;
     private ListarTarefas list;
     private int v;
+    private ListarMetas mets;
+    private int value_metas = 0;
     public Cronometro() 
     {
         initComponents();
@@ -37,6 +39,13 @@ public class Cronometro extends javax.swing.JFrame {
          this.linha_table=linha_selecionada;
          this.list = listagem;
          this.v=value;
+    }
+    public Cronometro(int linha_selecionada,ListarMetas listagem,int value_metas) 
+    {
+        initComponents();
+         this.linha_table=linha_selecionada;
+         this.mets = listagem;
+         this.value_metas=value_metas;
     }
 
     /**
@@ -217,14 +226,27 @@ public class Cronometro extends javax.swing.JFrame {
                 resto=list.controller.retorna_estudos().size()+list.controller.retorna_trabalho().size();
                 list.controller.retorna_lazer().get(linha_table%resto).setHoras(contador);
             }
+            if(value_metas==-1)
+            {
+                mets.controller.getMetas().get(linha_table).setHoras(contador);
+            }
             if(contador!=0) array_dados[linha_table]=contador;
             contador = 0;
             jContagem.setText(String.format("00:00:00")); 
             tm.cancel();
 
             rodar = false;
+            if(value_metas!=-1)
+            {
+                
             list.carregartarefas();
             list.setVisible(true);
+            }
+            else
+            {
+                mets.carregarMetas();
+                mets.setVisible(true);
+            }
             this.dispose();
             
             

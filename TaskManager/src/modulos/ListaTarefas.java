@@ -18,7 +18,6 @@ public abstract class ListaTarefas  implements Comparable<ListaTarefas>
     private boolean concluse;
     private Date data;
     private int horas;
-    private String horas_formatadas;
     private boolean correct=false;
 
     public int getHoras() 
@@ -35,17 +34,22 @@ public abstract class ListaTarefas  implements Comparable<ListaTarefas>
     {
         this.nome_tarefa = nome_tarefa;
        
-            
+          while(!correct)
+          {
+              
             try 
             {
+                
                 this.data=new SimpleDateFormat("dd/MM/yyyy").parse(dat);
                 correct=true;
             } 
             catch (ParseException ex) 
             {
-                JOptionPane.showMessageDialog(null, "Insira uma data válida.");
+                dat=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
+                
 
             }
+          }
         
     }
 
