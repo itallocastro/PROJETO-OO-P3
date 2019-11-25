@@ -220,9 +220,11 @@ public class AdicionarTarefas extends javax.swing.JFrame {
 
     private void jAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddActionPerformed
        String tipo =(String) jTipos.getSelectedItem();
+       boolean correct;
         if(tipo.equals("Estudos") && (!jNomeTarefa.getText().equals("")))
         {
             ListaTarefasEstudos novo_estudo = new ListaTarefasEstudos(jNomeTarefa.getText(),String.valueOf(jMaterias.getSelectedItem()),jData.getText());
+            
             estudos.add(novo_estudo);           
              JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
         }

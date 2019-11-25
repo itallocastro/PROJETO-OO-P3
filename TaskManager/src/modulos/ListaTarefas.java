@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,7 @@ public abstract class ListaTarefas  implements Comparable<ListaTarefas>
     private Date data;
     private int horas;
     private String horas_formatadas;
+    private boolean correct=false;
 
     public int getHoras() 
     {
@@ -32,15 +34,31 @@ public abstract class ListaTarefas  implements Comparable<ListaTarefas>
     public ListaTarefas(String nome_tarefa,String dat) 
     {
         this.nome_tarefa = nome_tarefa;
-        try 
-        {
-            this.data=new SimpleDateFormat("dd/MM/yyyy").parse(dat);
-        } 
-        catch (ParseException ex) 
-        {
-            Logger.getLogger(ListaTarefas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
+            
+            try 
+            {
+                this.data=new SimpleDateFormat("dd/MM/yyyy").parse(dat);
+                correct=true;
+            } 
+            catch (ParseException ex) 
+            {
+                JOptionPane.showMessageDialog(null, "Insira uma data válida.");
+
+            }
+        
     }
+
+    public boolean isCorrect() 
+    {
+        return correct;
+    }
+
+    public void setCorrect(boolean correct) 
+    {
+        this.correct = correct;
+    }
+    
 
     public String getNome_tarefa() 
     {
