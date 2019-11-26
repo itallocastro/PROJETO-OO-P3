@@ -22,8 +22,8 @@
 8. - Check-list em tarefas
 9. - % de metas batidas
 10. - Monitorar desempenho nos estudos,através de % de questões realizadas corretamente
-11. - Alterar data das metas
-12. - Alterar data das tarefas
-13. - Sistema de login e senha
+11. - Alterar data das metas/tarefas
+12. - Sistema de login e senha
+13. - Buscar tarefas/metas
 
 
