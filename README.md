@@ -16,12 +16,14 @@
 2. - Cronometrar horas de tarefas
 3. - Excluir tarefas
 4. - % de tarefas batidas
-5. - Adicionar metas diárias / semanais
-6. - Excluir metas diárias / semanais
+5. - Adicionar metas
+6. - Excluir metas 
 7. - Check-list em metas
-8. - % de metas batidas
-9. - Monitorar desempenho nos estudos,através de % de questões realizadas corretamente
-10. - Adicionar/excluir Matéria de estudo
-11. - Sistema de login e senha
+8. - Check-list em tarefas
+9. - % de metas batidas
+10. - Monitorar desempenho nos estudos,através de % de questões realizadas corretamente
+11. - Alterar data das metas
+12. - Alterar data das tarefas
+13. - Sistema de login e senha
 
 
