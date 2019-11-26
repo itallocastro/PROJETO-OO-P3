@@ -78,8 +78,23 @@ public class ListaMetas implements Comparable<ListaMetas>
         return data;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setData(String data) {
+        correct_dat=false;
+        while(!correct_dat)
+        {
+            
+            try 
+            {
+                this.data=new SimpleDateFormat("dd/MM/yyyy").parse(data);
+                correct_dat = true;
+                
+            }
+            catch (ParseException ex) 
+            {
+                data=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
+            }
+        }
+       
     }
 
     public int getHoras() {
