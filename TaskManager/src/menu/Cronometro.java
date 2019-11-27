@@ -31,6 +31,7 @@ public class Cronometro extends javax.swing.JFrame {
     public Cronometro() 
     {
         initComponents();
+        this.setDefaultCloseOperation(0);
     }
 
     public Cronometro(int linha_selecionada,ListarTarefas listagem,int value) 
@@ -39,14 +40,10 @@ public class Cronometro extends javax.swing.JFrame {
          this.linha_table=linha_selecionada;
          this.list = listagem;
          this.v=value;
+         this.setDefaultCloseOperation(0);
     }
-    public Cronometro(int linha_selecionada,ListarMetas listagem,int value_metas) 
-    {
-        initComponents();
-         this.linha_table=linha_selecionada;
-         this.mets = listagem;
-         this.value_metas=value_metas;
-    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

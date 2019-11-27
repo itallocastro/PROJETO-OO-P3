@@ -213,7 +213,7 @@ public class AdicionarTarefas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTiposActionPerformed
 
     private void jAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdicionarActionPerformed
-        
+        adicionar_materias.setLocationRelativeTo(null);
         adicionar_materias.setVisible(true);
         
     }//GEN-LAST:event_jAdicionarActionPerformed

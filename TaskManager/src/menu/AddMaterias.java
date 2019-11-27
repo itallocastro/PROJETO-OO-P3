@@ -25,6 +25,7 @@ public class AddMaterias extends javax.swing.JFrame {
     }
     public AddMaterias() {
         initComponents();
+        this.setDefaultCloseOperation(0);
     }
     
 

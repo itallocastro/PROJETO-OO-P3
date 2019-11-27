@@ -15,6 +15,8 @@ public class MenuDeOpcoes extends javax.swing.JFrame
     /**
      * Creates new form MenuDeOpcoes
      */
+    MetasOpcoes meta = new MetasOpcoes();
+    OpcoesTarefas adicionar = new OpcoesTarefas();
     public MenuDeOpcoes() {
         initComponents();
         this.setDefaultCloseOperation(0);
@@ -120,14 +122,15 @@ public class MenuDeOpcoes extends javax.swing.JFrame
     }//GEN-LAST:event_jSairItemActionPerformed
 
     private void jChamarMetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChamarMetasActionPerformed
-        MetasOpcoes meta = new MetasOpcoes();
+        meta.setLocationRelativeTo(null);
         meta.setVisible(true);
     }//GEN-LAST:event_jChamarMetasActionPerformed
 
     private void jTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTarefasActionPerformed
-        OpcoesTarefas adicionar = new OpcoesTarefas();
-        adicionar.setVisible(true);   
-        this.setVisible(false);
+        meta.setLocationRelativeTo(null);
+        adicionar.setVisible(true);  
+        
+        
     }//GEN-LAST:event_jTarefasActionPerformed
 
     /**

@@ -21,6 +21,7 @@ public class AdicionarMetas extends javax.swing.JFrame {
     ArrayList<ListaMetas> metas = new ArrayList<>();
     public AdicionarMetas() {
         initComponents();
+        this.setDefaultCloseOperation(0);
     }
 
     /**
@@ -50,7 +51,7 @@ public class AdicionarMetas extends javax.swing.JFrame {
             }
         });
 
-        jData.setText("dd/mm/yyyy");
+        jData.setText("31/12/1900");
 
         jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +90,7 @@ public class AdicionarMetas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(0, 85, Short.MAX_VALUE))
+                                .addGap(0, 89, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jObs)
                                 .addGap(18, 18, 18)))))
@@ -98,9 +99,11 @@ public class AdicionarMetas extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
@@ -111,10 +114,7 @@ public class AdicionarMetas extends javax.swing.JFrame {
                         .addGap(85, 85, 85)
                         .addComponent(jButton2))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jObs, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jObs)
                         .addGap(18, 18, 18)
                         .addComponent(jAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(49, Short.MAX_VALUE))
@@ -134,11 +134,14 @@ public class AdicionarMetas extends javax.swing.JFrame {
             else
             {
                 novo = new ListaMetas(jNome.getText(),jData.getText(),false,jObs.getText());
+                jObs.setText("");
             }
             
             metas.add(novo);
             JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
         }
+        jNome.setText("");
+        
     }//GEN-LAST:event_jAdicionarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

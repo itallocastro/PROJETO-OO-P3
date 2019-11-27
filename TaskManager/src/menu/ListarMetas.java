@@ -9,9 +9,11 @@ package menu;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modulos.ListaMetas;
+import modulos.ListaTarefas;
 
 /**
  *
@@ -30,10 +32,12 @@ public class ListarMetas extends javax.swing.JFrame {
         initComponents();
         this.controller=add;
         carregarMetas();
+        this.setDefaultCloseOperation(0);
     }
 
     public ListarMetas() {
         initComponents();
+        this.setDefaultCloseOperation(0);
     }
     public void carregarMetas()
     {
@@ -50,7 +54,6 @@ public class ListarMetas extends javax.swing.JFrame {
                 metas.get(i).getNome(),
                 novo.format(metas.get(i).getData()),
                 metas.get(i).getObs(),
-                metas.get(i).hora_format(metas.get(i).getHoras()),
                 metas.get(i).isConcluse(),
             });
         }
@@ -76,31 +79,31 @@ public class ListarMetas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jConcluido = new javax.swing.JButton();
-        jCronometro = new javax.swing.JButton();
         jVoltar = new javax.swing.JButton();
         jExcluir = new javax.swing.JButton();
         jProgressBar = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
         jAlteraData = new javax.swing.JButton();
+        jBuscarDatas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nome", "Data", "Observação", "Tempo", "CheckList"
+                "Nome", "Data", "Observação", "CheckList"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -116,20 +119,12 @@ public class ListarMetas extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jConcluido.setText("Concluído");
         jConcluido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jConcluidoActionPerformed(evt);
-            }
-        });
-
-        jCronometro.setText("Cronometrar");
-        jCronometro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCronometroActionPerformed(evt);
             }
         });
 
@@ -158,6 +153,13 @@ public class ListarMetas extends javax.swing.JFrame {
             }
         });
 
+        jBuscarDatas.setText("Buscar");
+        jBuscarDatas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscarDatasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,11 +176,11 @@ public class ListarMetas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jAlteraData)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(63, 63, 63)
                                 .addComponent(jVoltar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCronometro)
-                                .addGap(43, 43, 43)
+                                .addComponent(jBuscarDatas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jConcluido)))
                         .addGap(25, 25, 25))
                     .addGroup(layout.createSequentialGroup()
@@ -194,8 +196,8 @@ public class ListarMetas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jConcluido)
-                    .addComponent(jCronometro)
-                    .addComponent(jExcluir))
+                    .addComponent(jExcluir)
+                    .addComponent(jBuscarDatas))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jVoltar)
@@ -213,21 +215,6 @@ public class ListarMetas extends javax.swing.JFrame {
     private void jVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jVoltarActionPerformed
-
-    private void jCronometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCronometroActionPerformed
-        int linha_selecionada = jTable1.getSelectedRow();
-        
-        if(linha_selecionada!=-1)
-        {
-           Cronometro cro = new Cronometro(linha_selecionada,this,-1);
-           cro.setVisible(true); 
-           
-        }
-        else
-        {
-             JOptionPane.showMessageDialog(null, "Selecione uma linha");
-        }
-    }//GEN-LAST:event_jCronometroActionPerformed
 
     private void jExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExcluirActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
@@ -292,6 +279,31 @@ public class ListarMetas extends javax.swing.JFrame {
         progressobarra();
     }//GEN-LAST:event_jAlteraDataActionPerformed
 
+    private void jBuscarDatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarDatasActionPerformed
+        String data_busca = JOptionPane.showInputDialog("Digite uma data para busca: (ex:dd/mm/yyyy)");
+        Date a,b;
+        ListaTarefas aux = new ListaTarefas() {};
+        aux.setData(data_busca);
+        b = aux.getData();
+        ArrayList<String> tarefas_buscadas = new ArrayList<>();
+        if(data_busca!=null)
+        {
+            for(int i=0;i<controller.getMetas().size();i++)
+            {
+                a = controller.getMetas().get(i).getData();
+                if(b.equals(a))
+                {
+                    tarefas_buscadas.add(controller.getMetas().get(i).getNome());
+                    
+                } 
+            }
+            
+            FrameBusca buscando = new FrameBusca(tarefas_buscadas,data_busca);
+            buscando.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_jBuscarDatasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -329,8 +341,8 @@ public class ListarMetas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAlteraData;
+    private javax.swing.JButton jBuscarDatas;
     private javax.swing.JButton jConcluido;
-    private javax.swing.JButton jCronometro;
     private javax.swing.JButton jExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JProgressBar jProgressBar;

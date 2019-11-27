@@ -12,20 +12,23 @@ import javax.swing.JOptionPane;
  *
  * @author Castro Alves
  */
-public abstract class ListaTarefas  implements Comparable<ListaTarefas>
+public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
 {
     private String nome_tarefa;
     private boolean concluse;
     private Date data;
-    private int horas;
+    private E horas = (E) "00:00:00";
     private boolean correct=false;
-
-    public int getHoras() 
+   
+    
+    
+    public E getHoras() 
     {
+        
         return horas;
     }
 
-    public void setHoras(int horas) 
+    public void setHoras(E horas) 
     {
         this.horas = horas;
     }
@@ -50,6 +53,10 @@ public abstract class ListaTarefas  implements Comparable<ListaTarefas>
 
             }
           }
+        
+    }
+    public ListaTarefas()
+    {
         
     }
 
@@ -87,9 +94,26 @@ public abstract class ListaTarefas  implements Comparable<ListaTarefas>
         return data;
     }
 
-    public void setData(Date data) 
+    public void setData(String data) 
     {
-        this.data = data;
+        correct = false;
+        
+        while(!correct)
+          {
+              
+            try 
+            {
+                
+                this.data=new SimpleDateFormat("dd/MM/yyyy").parse(data);
+                correct=true;
+            } 
+            catch (ParseException ex) 
+            {
+                data=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
+
+            }
+          }
+        
     }
     
     public String hora_format(int contador)
@@ -116,6 +140,7 @@ public abstract class ListaTarefas  implements Comparable<ListaTarefas>
         }
         return 0;
     }
+    
     
     
     

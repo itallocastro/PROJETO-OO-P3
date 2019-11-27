@@ -21,6 +21,7 @@ public class OpcoesTarefas extends javax.swing.JFrame {
     
     public OpcoesTarefas() {
         initComponents();
+        this.setDefaultCloseOperation(0);
     }
 
     /**
@@ -114,7 +115,7 @@ public class OpcoesTarefas extends javax.swing.JFrame {
     }//GEN-LAST:event_jAdicionarActionPerformed
 
     private void jSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSairActionPerformed
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jSairActionPerformed
 
     /**
