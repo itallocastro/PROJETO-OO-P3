@@ -27,3 +27,7 @@
 13. - Buscar tarefas/metas
 
 
+# Rodar a aplicação:
+1. - Ide NetBeans
+
+
