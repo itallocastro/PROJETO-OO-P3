@@ -19,6 +19,16 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
     private Date data;
     private E horas = (E) "00:00:00";
     private boolean correct=false;
+    private String tipo;
+
+    public String getTipo() 
+    {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
    
     
     
@@ -36,6 +46,29 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
     public ListaTarefas(String nome_tarefa,String dat) 
     {
         this.nome_tarefa = nome_tarefa;
+       
+          while(!correct)
+          {
+              
+            try 
+            {
+                
+                this.data=new SimpleDateFormat("dd/MM/yyyy").parse(dat);
+                correct=true;
+            } 
+            catch (ParseException ex) 
+            {
+                dat=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
+                
+
+            }
+          }
+        
+    }
+    public ListaTarefas(String nome_tarefa,String type,String dat) 
+    {
+        this.nome_tarefa = nome_tarefa;
+        this.tipo = type;
        
           while(!correct)
           {
@@ -112,6 +145,11 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
                 data=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
 
             }
+            catch (NullPointerException ex) 
+            {
+                data=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
+
+            }
           }
         
     }
@@ -126,6 +164,7 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
                     
                     
     }
+    
     @Override
     public int compareTo(ListaTarefas o) 
     {

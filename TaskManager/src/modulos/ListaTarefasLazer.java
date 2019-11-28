@@ -14,16 +14,19 @@ import java.util.Date;
  */
 public class ListaTarefasLazer extends ListaTarefas 
 {
-    private String tipo="lazer";
+   
     public ListaTarefasLazer(String nome_tarefa,String dat) 
     {
         super(nome_tarefa,dat);
     }
 
-    public String getTipo() 
-    {
-        return tipo;
+    public ListaTarefasLazer(String nome_tarefa, String tipo, String dat) {
+        super(nome_tarefa, tipo, dat);
     }
+    
+    
+
+    
     
     
 }

@@ -2,7 +2,7 @@ package main;
 
 import java.awt.Frame;
 import java.util.Scanner;
-import menu.TelaLogin;
+import janelas.TelaLogin;
 /**
  *
  * @author Castro Alves

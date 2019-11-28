@@ -15,12 +15,16 @@ import java.util.Date;
 public class ListaTarefasEstudos extends ListaTarefas
 {
     private String nome_materia;
-    private String tipo="Estudo";
+    
     
     public ListaTarefasEstudos(String nome_tarefa,String nome_materia, String dat) 
     {
         super(nome_tarefa,dat);
         this.nome_materia = nome_materia;
+    }
+
+    public ListaTarefasEstudos(String nome_tarefa, String tipo, String nome_materia, String dat) {
+        super(nome_tarefa,tipo,dat);
     }
 
     public String getNome_materia() 
@@ -33,10 +37,7 @@ public class ListaTarefasEstudos extends ListaTarefas
         this.nome_materia = nome_materia;
     }
 
-    public String getTipo() 
-    {
-        return tipo;
-    }
+    
     
     
        

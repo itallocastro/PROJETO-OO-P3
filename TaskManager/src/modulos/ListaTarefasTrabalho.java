@@ -14,16 +14,18 @@ import java.util.Date;
  */
 public class ListaTarefasTrabalho extends ListaTarefas
 {
-   private String tipo = "Trabalho";
+   
     public ListaTarefasTrabalho(String nome_tarefa,String dat) 
     {
         super(nome_tarefa,dat);
     }
 
-    public String getTipo() 
-    {
-        return tipo;
+    public ListaTarefasTrabalho(String nome_tarefa, String tipo, String dat) {
+        super(nome_tarefa, tipo, dat);
     }
+    
+
+   
     
     
 }
