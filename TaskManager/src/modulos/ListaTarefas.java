@@ -20,6 +20,7 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
     private E horas = (E) "00:00:00";
     private boolean correct=false;
     private String tipo;
+    private int contado = 0;
 
     public String getTipo() 
     {
@@ -164,6 +165,14 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
                     
                     
     }
+    public void setContado(int i) 
+    {
+        this.contado=i;
+    }
+    public int getContado()
+    {
+        return this.contado;
+    }
     
     @Override
     public int compareTo(ListaTarefas o) 
@@ -179,6 +188,8 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
         }
         return 0;
     }
+
+    
     
     
     

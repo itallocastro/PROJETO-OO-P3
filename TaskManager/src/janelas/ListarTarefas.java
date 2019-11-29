@@ -41,6 +41,8 @@ public final class ListarTarefas extends javax.swing.JFrame {
         //jTable.setRowSorter(new TableRowSorter(modelo));
         
         carregartarefas();
+        progressobarra();
+        
         
         
         
@@ -71,16 +73,20 @@ public final class ListarTarefas extends javax.swing.JFrame {
         //System.out.println(estudos.size());
         for(int i=0;i<contador;i++)
         {
-            if(all_tasks.get(i).getTipo().equals("Estudos"))
+            
+            if(all_tasks.get(i).getTipo().equals("Estudos") && all_tasks.get(i).getContado()==0)
             {
+                all_tasks.get(i).setContado(1);
                 cont1++;
             }
-            else if(all_tasks.get(i).getTipo().equals("Trabalho"))
+            else if(all_tasks.get(i).getTipo().equals("Trabalho") && all_tasks.get(i).getContado()==0)
             {
+                all_tasks.get(i).setContado(1);
                 cont2++;
             }
-            else if(all_tasks.get(i).getTipo().equals("Lazer"))
+            else if(all_tasks.get(i).getTipo().equals("Lazer") && all_tasks.get(i).getContado()==0)
             {
+                all_tasks.get(i).setContado(1);
                 cont3++;
             }
             if(all_tasks.get(i).getHoras() instanceof String)
@@ -111,16 +117,35 @@ public final class ListarTarefas extends javax.swing.JFrame {
     private void progressobarra() 
     {
         float porcentagem=((float)realizados1/cont1)*100;
-        if(cont1>0) jProgressBarEstudos.setValue((int)porcentagem);
-        else jProgressBarEstudos.setValue(0);
+        if(cont1>0)
+        {
+            
+            jProgressBarEstudos.setValue((int)porcentagem);
+        }
+        else 
+        {
+            jProgressBarEstudos.setValue(0);
+        }
         
         porcentagem=((float)realizados2/cont2)*100;
-        if(cont2>0) jProgressBarTrabalho.setValue((int)porcentagem);
-        else jProgressBarTrabalho.setValue(0);
+        if(cont2>0)
+        {
+            jProgressBarTrabalho.setValue((int)porcentagem);
+        }
+        else
+        {
+            jProgressBarTrabalho.setValue(0);
+        }
         
         porcentagem=((float)realizados3/cont3)*100;
-        if(cont3>0) jProgressBarLazer.setValue((int)porcentagem);
-        else jProgressBarLazer.setValue(0);
+        if(cont3>0) 
+        {
+            jProgressBarLazer.setValue((int)porcentagem);
+        }
+        else
+        {
+            jProgressBarLazer.setValue(0);
+        }
               
     }
 
@@ -335,8 +360,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
         if(linha_excluir!=-1)
         {
           
-            controller.retorna_tarefas().remove(linha_excluir);
-            if(jTable.getValueAt(linha_excluir, 1).equals("Estudo"))
+            if(jTable.getValueAt(linha_excluir, 1).equals("Estudos"))
             {
                if(controller.retorna_tarefas().get(linha_excluir).isConcluse())
                {
@@ -370,6 +394,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
             }
         
             modelo.removeRow(linha_excluir);
+            controller.retorna_tarefas().remove(linha_excluir);
         }
         else
         {
@@ -390,7 +415,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
         if(linha_concluida!=-1)
         {
             controller.retorna_tarefas().get(linha_concluida).setConcluse(true);
-            if(jTable.getValueAt(linha_concluida, 1).equals("Estudo"))
+            if(jTable.getValueAt(linha_concluida, 1).equals("Estudos"))
             {
                
                realizados1++;
