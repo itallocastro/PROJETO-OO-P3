@@ -5,10 +5,10 @@
  */
 package janelas;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.table.DefaultTableModel;
+import modulos.ListaMetas;
+import modulos.ListaTarefas;
 
 /**
  *
@@ -19,20 +19,31 @@ public class FrameBusca extends javax.swing.JFrame {
     /**
      * Creates new form FrameBusca
      */
-    ArrayList<String> tarefas_ou_metas;
-    ArrayList<Date> datas;
+    ArrayList<ListaTarefas> tarefas_ou_metas;
+    ArrayList<ListaMetas> metas;
     String dat;
-    public FrameBusca(ArrayList<String> tarefas_metas, String data, ArrayList<Date> datas){
+    int i = 0;
+    public FrameBusca(ArrayList<ListaTarefas> tarefas_metas, String data){
         
         initComponents();
         this.tarefas_ou_metas = tarefas_metas;
         this.dat = data;
-        this.datas = datas;
         carregardatado();
-        
         this.setDefaultCloseOperation(0);
         
     }
+
+    public FrameBusca(ArrayList<ListaMetas> metas, String dat,int i) 
+    {
+        initComponents();
+        this.metas = metas;
+        this.dat = dat;
+        this.i = i;
+        carregardatado();
+        this.setDefaultCloseOperation(0);
+        
+    }
+    
 
     public FrameBusca() {
         this.setDefaultCloseOperation(0);
@@ -42,14 +53,27 @@ public class FrameBusca extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
         jLabel1.setText(jLabel1.getText()+dat);
-        
-        for(int i = 0 ; i<tarefas_ou_metas.size();i++)
+        if(i==0)
         {
-             modelo.addRow(new Object[]{
-                tarefas_ou_metas.get(i),
-                new SimpleDateFormat("dd/MM/yyyy").format(datas.get(i)),
-                
-            });
+            
+            for(int i = 0 ; i<tarefas_ou_metas.size();i++)
+            {
+                 modelo.addRow(new Object[]{
+                    tarefas_ou_metas.get(i).getNome_tarefa(),
+                     tarefas_ou_metas.get(i).getTipo(),
+                });
+            }
+        }
+        else if(i==1)
+        {
+            for(int i = 0 ; i<metas.size();i++)
+            {
+                 modelo.addRow(new Object[]{
+                    metas.get(i).getNome(),
+                     metas.get(i).getObs(),
+                     
+                });
+            }
         }
     }
     
@@ -78,7 +102,7 @@ public class FrameBusca extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Nome", "Data de realização"
+                "Nome", "Tipo/Observação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -108,24 +132,25 @@ public class FrameBusca extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(446, Short.MAX_VALUE)
-                .addComponent(jVoltar)
-                .addGap(34, 34, 34))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jVoltar)
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jVoltar)
                 .addGap(24, 24, 24))
         );

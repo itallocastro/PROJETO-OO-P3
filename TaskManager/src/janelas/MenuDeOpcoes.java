@@ -144,7 +144,7 @@ public class MenuDeOpcoes extends javax.swing.JFrame
     }//GEN-LAST:event_jChamarMetasActionPerformed
 
     private void jTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTarefasActionPerformed
-        meta.setLocationRelativeTo(null);
+        adicionar.setLocationRelativeTo(null);
         adicionar.setVisible(true);  
         
         

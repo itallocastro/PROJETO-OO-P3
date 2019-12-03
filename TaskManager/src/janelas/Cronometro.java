@@ -21,6 +21,7 @@ public class Cronometro extends javax.swing.JFrame {
     private Timer tm;
     private int contador=0;
     private boolean rodar = false;
+    private int[] array_dados = new int[1000]; 
     private int i = 0;
     private int linha_table;
     private ListarTarefas list;
@@ -157,7 +158,15 @@ public class Cronometro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    public int getArray_dados(int indice) 
+    {
+        return array_dados[indice];
+    }
+
+    public void setArray_dados(int[] array_dados) 
+    {
+        this.array_dados = array_dados;
+    }
 
     private void jIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIniciarActionPerformed
       if(!rodar)
@@ -215,24 +224,20 @@ public class Cronometro extends javax.swing.JFrame {
             {
                 
                 if(!rodar)
-                {   
-                    list.controller.retorna_tarefas().get(linha_table).setHoras(contador);
+                {   list.controller.retorna_tarefas().get(linha_table).setHoras(contador);
                     
-                    
+                    if(contador!=0) array_dados[linha_table]=contador;
                     contador = 0;
                     jContagem.setText(String.format("00:00:00")); 
                     tm.cancel();
 
                     rodar = false;
-                    
+                    flag = true;
                     list.carregartarefas();
                     list.setVisible(true);
-                    flag = true;
                     
                     
-                    
-                    
-                    //this.dispose();
+                    this.dispose();
 
 
                 }

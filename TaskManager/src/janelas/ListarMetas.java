@@ -24,7 +24,7 @@ public class ListarMetas extends javax.swing.JFrame {
     /**
      * Creates new form ListarMetas
      */
-    SimpleDateFormat novo = new SimpleDateFormat();
+    SimpleDateFormat novo = new SimpleDateFormat("dd/MM/yyyy");
     int cont1,realizados1;
     ArrayList<ListaMetas> metas = new ArrayList<>();
     AdicionarMetas controller;
@@ -286,8 +286,7 @@ public class ListarMetas extends javax.swing.JFrame {
         ListaTarefas aux = new ListaTarefas() {};
         aux.setData(data_busca);
         b = aux.getData();
-        ArrayList<String> tarefas_buscadas = new ArrayList<>();
-        ArrayList<Date> datas_buscadas = new ArrayList<>();
+        ArrayList<ListaMetas> tarefas_buscadas = new ArrayList<>();
         if(data_busca!=null)
         {
             for(int i=0;i<controller.getMetas().size();i++)
@@ -295,13 +294,12 @@ public class ListarMetas extends javax.swing.JFrame {
                 a = controller.getMetas().get(i).getData();
                 if(b.equals(a))
                 {
-                    tarefas_buscadas.add(controller.getMetas().get(i).getNome());
-                    datas_buscadas.add(controller.getMetas().get(i).getData());
+                    tarefas_buscadas.add(controller.getMetas().get(i));
                     
                 } 
             }
             
-            FrameBusca buscando = new FrameBusca(tarefas_buscadas,data_busca,datas_buscadas);
+            FrameBusca buscando = new FrameBusca(tarefas_buscadas,data_busca,1);
             buscando.setVisible(true);
             
         }

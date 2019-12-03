@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
 {
     private String nome_tarefa;
-    private boolean concluse;
+    private boolean concluse=false;
     private Date data;
     private E horas = (E) "00:00:00";
     private boolean correct=false;
@@ -61,6 +61,10 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
             catch (ParseException ex) 
             {
                 dat=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
+                if(dat==null)
+                {
+                    dat = "31/12/1900";
+                }
                 
 
             }
@@ -84,7 +88,10 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
             catch (ParseException ex) 
             {
                 dat=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
-                
+                if(dat==null)
+                {
+                    dat = "31/12/1900";
+                }
 
             }
           }
@@ -135,7 +142,10 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
         
         while(!correct)
           {
-              
+            if(data==null)
+            {
+                data = "31/12/1900";
+            }  
             try 
             {
                 
@@ -145,13 +155,10 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
             catch (ParseException ex) 
             {
                 data=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
+                
 
             }
-            catch (NullPointerException ex) 
-            {
-                data=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
-
-            }
+            
           }
         
     }
@@ -166,6 +173,7 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
                     
                     
     }
+    
     public void setContado(int i) 
     {
         this.contado=i;

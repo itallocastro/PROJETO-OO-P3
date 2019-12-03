@@ -39,6 +39,10 @@ public class ListaMetas implements Comparable<ListaMetas>
             catch (ParseException ex) 
             {
                 data=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
+                if(data==null)
+                {
+                    data = "31/12/1900";
+                }
             }
         }
         this.concluse = concluse;
@@ -59,6 +63,10 @@ public class ListaMetas implements Comparable<ListaMetas>
             catch (ParseException ex) 
             {
                 data=JOptionPane.showInputDialog("Digite uma data válida: (ex: dd/mm/yyyy)");
+                if(data==null)
+                {
+                    data="31/12/1900";
+                }
             }
         }
         this.concluse=concluse;
@@ -82,7 +90,10 @@ public class ListaMetas implements Comparable<ListaMetas>
         correct_dat=false;
         while(!correct_dat)
         {
-            
+            if(data==null)
+            {
+                data = "31/12/1900";
+            }
             try 
             {
                 this.data=new SimpleDateFormat("dd/MM/yyyy").parse(data);

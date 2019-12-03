@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import modulos.FormataHoras;
 import modulos.ListaTarefas;
 
 /**
@@ -541,8 +542,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
         ListaTarefas aux = new ListaTarefas() {};
         aux.setData(data_busca);
         b = aux.getData();
-        ArrayList<String> tarefas_buscadas = new ArrayList<>();
-        ArrayList<Date> datas_buscadas = new ArrayList<>();
+        ArrayList<ListaTarefas> tarefas_buscadas = new ArrayList<>();
         if(data_busca!=null)
         {
             for(int i=0;i<controller.retorna_tarefas().size();i++)
@@ -550,13 +550,12 @@ public final class ListarTarefas extends javax.swing.JFrame {
                 a = controller.retorna_tarefas().get(i).getData();
                 if(b.equals(a))
                 {
-                    tarefas_buscadas.add(controller.retorna_tarefas().get(i).getNome_tarefa());
-                    datas_buscadas.add(controller.retorna_tarefas().get(i).getData());
+                    tarefas_buscadas.add(controller.retorna_tarefas().get(i));
                     
                 } 
             }
             
-            FrameBusca buscando = new FrameBusca(tarefas_buscadas,data_busca,datas_buscadas);
+            FrameBusca buscando = new FrameBusca(tarefas_buscadas,data_busca);
             buscando.setVisible(true);
             
         }
@@ -565,7 +564,8 @@ public final class ListarTarefas extends javax.swing.JFrame {
     private void jInserirHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInserirHActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) jTable.getModel();
         String horario;
-        int resto;
+        FormataHoras f =new FormataHoras();
+        
         
         int linha_concluida=jTable.getSelectedRow();
         if(linha_concluida!=-1)
@@ -576,8 +576,15 @@ public final class ListarTarefas extends javax.swing.JFrame {
                 horario = JOptionPane.showInputDialog("Digite um horário válido: (ex: hh:mm:ss)");
                 if(horario!=null)
                 {
+                    horario = f.formataString(horario);
                     controller.retorna_tarefas().get(linha_concluida).setHoras(horario);
                     
+                    break;
+                }
+                else
+                {
+                    horario = "00:00:00";
+                    controller.retorna_tarefas().get(linha_concluida).setHoras(horario);
                     break;
                 }
             }
