@@ -5,17 +5,18 @@
  */
 package janelas;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import modulos.ListaTarefas;
-import modulos.ListaTarefasEstudos;
-import modulos.ListaTarefasLazer;
-import modulos.ListaTarefasTrabalho;
 
 /**
  *
@@ -28,10 +29,11 @@ public final class ListarTarefas extends javax.swing.JFrame {
     AdicionarTarefas controller;
     int cont1=0,cont2=0,cont3=0;
     int realizados1,realizados2,realizados3,horas_tarefas;
+    String data_atual="31/12/1900";
     
    
 
-    SimpleDateFormat novo = new SimpleDateFormat();
+    SimpleDateFormat novo = new SimpleDateFormat("dd/MM/yyyy");
     
     public ListarTarefas(AdicionarTarefas add) {
         initComponents();
@@ -40,9 +42,10 @@ public final class ListarTarefas extends javax.swing.JFrame {
         //DefaultTableModel modelo = (DefaultTableModel) jTable.getModel();
         //jTable.setRowSorter(new TableRowSorter(modelo));
         
+        data();
         carregartarefas();
         progressobarra();
-        
+       
         
         
         
@@ -50,14 +53,56 @@ public final class ListarTarefas extends javax.swing.JFrame {
     public ListarTarefas() {
         initComponents();
         this.setDefaultCloseOperation(0);
+        data();
         carregartarefas();
         progressobarra();
         
         
         
+        
     }
 
-    
+    protected void data()
+    {
+        Date data = new Date();
+        SimpleDateFormat formatada = new SimpleDateFormat("dd/MM/yyyy");
+        this.data_atual = formatada.format(data);
+        jLabel.setText(data_atual);
+    }
+    /*protected void MudarCor(String atual_data)
+    {
+        jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer()
+        {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+            {
+                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, false, hasFocus, row, column);
+                String data  = (String) jTable.getValueAt(row,2);
+                
+                    /*if(controller.retorna_tarefas().get(0).compareTo(atual_data,data)==-1)
+                    {
+                        label.setForeground(Color.red);
+                        
+                    }
+                    if(row%2==0)
+                    {
+                        label.setForeground(Color.red);
+                    }
+               
+                /*if(data.equals(atual_data))
+                {
+                    label.setForeground(Color.blue);
+                }
+                else
+                {
+                    label.setForeground(Color.red);
+                }
+                return label;
+            }
+            
+        });
+        
+    }*/
     protected void carregartarefas()
     {
         all_tasks = controller.retorna_tarefas();      
@@ -112,6 +157,8 @@ public final class ListarTarefas extends javax.swing.JFrame {
                 });
             }
         }
+        //MudarCor(this.data_atual);
+        
         
     }
     private void progressobarra() 
@@ -179,6 +226,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
         jAlterarData = new javax.swing.JButton();
         jBuscar = new javax.swing.JButton();
         jInserirH = new javax.swing.JButton();
+        jLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -278,6 +326,8 @@ public final class ListarTarefas extends javax.swing.JFrame {
             }
         });
 
+        jLabel.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -285,8 +335,15 @@ public final class ListarTarefas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jExcluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBuscar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,49 +358,48 @@ public final class ListarTarefas extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jInserirH))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jExcluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBuscar)))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCronometrar)
-                                .addGap(31, 31, 31)
-                                .addComponent(jConcluido))
+                                        .addComponent(jInserirH)))))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCronometrar)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jAlterarData)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jVoltar)))
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jConcluido)
+                                    .addComponent(jVoltar))))
                         .addGap(45, 45, 45))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jExcluir)
-                    .addComponent(jConcluido)
+                    .addComponent(jBuscar)
                     .addComponent(jCronometrar)
-                    .addComponent(jBuscar))
+                    .addComponent(jConcluido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jVoltar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jAlterarData)
-                    .addComponent(jInserirH))
-                .addGap(8, 8, 8)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jInserirH)
+                        .addComponent(jAlterarData)
+                        .addComponent(jVoltar)))
+                .addGap(18, 18, 18)
                 .addComponent(jProgressBarEstudos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jProgressBarTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBarLazer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -579,6 +635,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
     private javax.swing.JButton jCronometrar;
     private javax.swing.JButton jExcluir;
     private javax.swing.JButton jInserirH;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

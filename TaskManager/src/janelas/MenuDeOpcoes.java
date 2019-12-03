@@ -17,10 +17,18 @@ public class MenuDeOpcoes extends javax.swing.JFrame
      */
     MetasOpcoes meta = new MetasOpcoes();
     OpcoesTarefas adicionar = new OpcoesTarefas();
+    TelaLogin tela = new TelaLogin();
     public MenuDeOpcoes() {
         initComponents();
         this.setDefaultCloseOperation(0);
         
+    }
+
+    public MenuDeOpcoes(String nome_usuario, TelaLogin t) {
+        initComponents();
+        this.setDefaultCloseOperation(0);
+        this.tela = t;
+        jLabel1.setText(jLabel1.getText()+nome_usuario);
     }
 
 
@@ -41,6 +49,7 @@ public class MenuDeOpcoes extends javax.swing.JFrame
         jMenu4 = new javax.swing.JMenu();
         jChamarMetas = new javax.swing.JButton();
         jTarefas = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Opcoes = new javax.swing.JMenu();
         Sair = new javax.swing.JMenu();
@@ -75,6 +84,8 @@ public class MenuDeOpcoes extends javax.swing.JFrame
             }
         });
 
+        jLabel1.setText("Bem-vindo ");
+
         Opcoes.setText("Opcoes");
         jMenuBar1.add(Opcoes);
 
@@ -102,11 +113,15 @@ public class MenuDeOpcoes extends javax.swing.JFrame
                 .addGap(77, 77, 77)
                 .addComponent(jTarefas)
                 .addContainerGap(137, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addComponent(jLabel1)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jChamarMetas)
                     .addComponent(jTarefas))
@@ -118,7 +133,9 @@ public class MenuDeOpcoes extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSairItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSairItemActionPerformed
-        System.exit(0);
+        tela.setLocationRelativeTo(null);
+        this.setVisible(false);
+        tela.setVisible(true);
     }//GEN-LAST:event_jSairItemActionPerformed
 
     private void jChamarMetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChamarMetasActionPerformed
@@ -172,6 +189,7 @@ public class MenuDeOpcoes extends javax.swing.JFrame
     private javax.swing.JMenu Opcoes;
     private javax.swing.JMenu Sair;
     private javax.swing.JButton jChamarMetas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

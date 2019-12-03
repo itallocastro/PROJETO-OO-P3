@@ -6,6 +6,7 @@
 package janelas;
 
 import javax.swing.JOptionPane;
+import modulos.BancoUsuarios;
 
 /**
  *
@@ -18,6 +19,8 @@ public class TelaLogin extends javax.swing.JDialog {
      */
     public String login_name;
     public String senha;
+    BancoUsuarios banco = new BancoUsuarios();
+    Cadastro cadastramento = new Cadastro(this);
     
     public TelaLogin(java.awt.Frame parent, boolean modal) 
     {
@@ -29,7 +32,7 @@ public class TelaLogin extends javax.swing.JDialog {
 
     public TelaLogin() 
     {        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     /**
@@ -48,6 +51,8 @@ public class TelaLogin extends javax.swing.JDialog {
         jBotao = new javax.swing.JButton();
         txtSenha = new javax.swing.JPasswordField();
         jSair = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
@@ -70,6 +75,15 @@ public class TelaLogin extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText("Ainda não possui cadastro?");
+
+        jCadastrar.setText("Cadastre-se");
+        jCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCadastrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -81,25 +95,38 @@ public class TelaLogin extends javax.swing.JDialog {
                 .addComponent(jBotao)
                 .addGap(69, 69, 69))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSenha)
-                    .addComponent(jLogin)
-                    .addComponent(txtLogin)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSenha)
+                            .addComponent(jLogin)
+                            .addComponent(txtLogin)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jCadastrar))
+                            .addComponent(jLabel1))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
+                .addGap(57, 57, 57)
                 .addComponent(jLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addComponent(jSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCadastrar)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBotao)
@@ -124,16 +151,24 @@ public class TelaLogin extends javax.swing.JDialog {
 
     private void jBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoActionPerformed
         
-        if(txtLogin.getText().equals("itallocastro") && txtSenha.getText().equals("123"))
+        boolean flag = false;
+        for(int i = 0; i<banco.getBanco_usu().size();i++)
         {
-            login_name = txtLogin.getText();
-            senha = txtSenha.getText();
-            MenuDeOpcoes menu = new MenuDeOpcoes();
-            this.dispose();
-            menu.setVisible(true);
             
+            if(txtLogin.getText().equals(banco.getBanco_usu().get(i).getNome_usuario()) 
+                    && txtSenha.getText().equals(banco.getBanco_usu().get(i).getSenha()))
+            {
+                login_name = txtLogin.getText();
+                senha = txtSenha.getText();
+                MenuDeOpcoes menu = new MenuDeOpcoes(banco.getBanco_usu().get(i).getNome_usuario(),this);
+                this.dispose();
+                menu.setVisible(true);
+                flag = true;
+
+            }
+           
         }
-        else
+        if(flag == false)
         {
             JOptionPane.showMessageDialog(null, "Dados incorretos.Digite novamente...");
         }
@@ -144,6 +179,12 @@ public class TelaLogin extends javax.swing.JDialog {
     private void jSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jSairActionPerformed
+
+    private void jCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadastrarActionPerformed
+        cadastramento.setLocationRelativeTo(null);
+        cadastramento.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +230,8 @@ public class TelaLogin extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBotao;
+    private javax.swing.JButton jCadastrar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLogin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jSair;
