@@ -189,33 +189,7 @@ public abstract class ListaTarefas<E>  implements Comparable<ListaTarefas>
         }
         return 0;
     }
-    public int compareTo(String o,String otwo) 
-    {
-        Date aux = new Date();
-        Date aux2 = new Date();
-        try 
-        {
-            aux = new SimpleDateFormat("dd/MM/yyyy").parse(o);
-            aux2 = new SimpleDateFormat("dd/MM/yyyy").parse(otwo);
-        } 
-        
-        catch (ParseException ex)
-        {
-            
-        }
-        if(aux2.after(aux))
-        {
-            
-            return 1;
-        }
-        else if(aux2.before(aux))
-        {
-            
-            System.out.println("data fixa: "+aux + "data:" + aux2);
-            return -1;
-        }
-        return 0;
-    }
+    
 
     
     

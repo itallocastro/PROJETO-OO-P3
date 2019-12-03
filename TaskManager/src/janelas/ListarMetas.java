@@ -287,6 +287,7 @@ public class ListarMetas extends javax.swing.JFrame {
         aux.setData(data_busca);
         b = aux.getData();
         ArrayList<String> tarefas_buscadas = new ArrayList<>();
+        ArrayList<Date> datas_buscadas = new ArrayList<>();
         if(data_busca!=null)
         {
             for(int i=0;i<controller.getMetas().size();i++)
@@ -295,11 +296,12 @@ public class ListarMetas extends javax.swing.JFrame {
                 if(b.equals(a))
                 {
                     tarefas_buscadas.add(controller.getMetas().get(i).getNome());
+                    datas_buscadas.add(controller.getMetas().get(i).getData());
                     
                 } 
             }
             
-            FrameBusca buscando = new FrameBusca(tarefas_buscadas,data_busca);
+            FrameBusca buscando = new FrameBusca(tarefas_buscadas,data_busca,datas_buscadas);
             buscando.setVisible(true);
             
         }
