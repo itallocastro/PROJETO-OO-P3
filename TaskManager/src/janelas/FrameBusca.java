@@ -23,23 +23,23 @@ public class FrameBusca extends javax.swing.JFrame {
     ArrayList<ListaMetas> metas;
     String dat;
     int i = 0;
+    
     public FrameBusca(ArrayList<ListaTarefas> tarefas_metas, String data){
-        
-        initComponents();
-        this.tarefas_ou_metas = tarefas_metas;
-        this.dat = data;
+        this(data);
+        this.tarefas_ou_metas = tarefas_metas;   
         carregardatado();
-        this.setDefaultCloseOperation(0);
-        
     }
 
     public FrameBusca(ArrayList<ListaMetas> metas, String dat,int i) 
-    {
-        initComponents();
+    {  
+        this(dat);
         this.metas = metas;
-        this.dat = dat;
-        this.i = i;
+        this.i = i;   
         carregardatado();
+    }
+    public FrameBusca(String data) {
+        initComponents();
+        this.dat = data;
         this.setDefaultCloseOperation(0);
         
     }
@@ -59,7 +59,7 @@ public class FrameBusca extends javax.swing.JFrame {
             for(int i = 0 ; i<tarefas_ou_metas.size();i++)
             {
                  modelo.addRow(new Object[]{
-                    tarefas_ou_metas.get(i).getNome_tarefa(),
+                    tarefas_ou_metas.get(i).getNome(),
                      tarefas_ou_metas.get(i).getTipo(),
                 });
             }

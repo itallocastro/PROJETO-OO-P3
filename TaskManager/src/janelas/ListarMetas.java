@@ -37,8 +37,7 @@ public class ListarMetas extends javax.swing.JFrame {
     }
 
     public ListarMetas() {
-        initComponents();
-        this.setDefaultCloseOperation(0);
+        this(null);
     }
     public void carregarMetas()
     {

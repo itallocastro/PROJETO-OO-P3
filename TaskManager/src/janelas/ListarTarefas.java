@@ -40,27 +40,14 @@ public final class ListarTarefas extends javax.swing.JFrame {
         initComponents();
         this.controller = add;
         this.setDefaultCloseOperation(0);
-        //DefaultTableModel modelo = (DefaultTableModel) jTable.getModel();
-        //jTable.setRowSorter(new TableRowSorter(modelo));
-        
         data();
         carregartarefas();
         progressobarra();
-       
-        
-        
+             
         
     }
     public ListarTarefas() {
-        initComponents();
-        this.setDefaultCloseOperation(0);
-        data();
-        carregartarefas();
-        progressobarra();
-        
-        
-        
-        
+        this(null);   
     }
 
     protected void data()
@@ -139,7 +126,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
             {
                     
                     modelo.addRow(new Object[]{
-                    all_tasks.get(i).getNome_tarefa(),
+                    all_tasks.get(i).getNome(),
                     all_tasks.get(i).getTipo(),
                     novo.format(all_tasks.get(i).getData()),
                     all_tasks.get(i).isConcluse(),
@@ -150,7 +137,7 @@ public final class ListarTarefas extends javax.swing.JFrame {
             {
                 
                 modelo.addRow(new Object[]{
-                    all_tasks.get(i).getNome_tarefa(),
+                    all_tasks.get(i).getNome(),
                     all_tasks.get(i).getTipo(),
                     novo.format(all_tasks.get(i).getData()),
                     all_tasks.get(i).isConcluse(),
@@ -196,16 +183,6 @@ public final class ListarTarefas extends javax.swing.JFrame {
         }
               
     }
-
-    
-        
-    
-       
-
-    
-       
-
-    
        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

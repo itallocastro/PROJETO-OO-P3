@@ -18,6 +18,14 @@ public class FormataHoras
 {
 
     private boolean flag = false;
+    public String formataString(int contador)
+    {
+            int segundo = contador % 60;
+            int minutos = contador / 60;
+            int horas1 = minutos / 60;
+            minutos %= 60;
+            return String.format("%02d:%02d:%02d", horas1,minutos,segundo);
+    }
     public String formataString(String horas_string)
     {
       Date n = null;
@@ -40,7 +48,6 @@ public class FormataHoras
         }
       }
       return new SimpleDateFormat("hh:mm:ss").format(n);
-        
-        
+           
     }
 }
