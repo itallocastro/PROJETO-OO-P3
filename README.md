@@ -11,4 +11,4 @@ Projeto de refatoramento da matéria de projeto de software
 - Nas classes listarMetas,listarTarefas,FrameBusca havia muito código duplicado nos construtores da aplicação.Com isso, utilizei do padrão "Chain constructor" para evitar essa duplicação de código.
 
 ## Obsevação:
-- O projeto antes da refatoração encontra-se na branch 'nao-refatorado'
+- O projeto antes da refatoração encontra-se na branch 'nao-refatorado',ou seja, a branch 'master' possui o código refatorado.
