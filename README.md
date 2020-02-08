@@ -1,34 +1,14 @@
-# TASK MANAGER
+# Projeto-Refatorado
+Projeto de refatoramento da matéria de projeto de software
 
-## Sistema de gestão de rotina diária.
-### Tipos de tarefas:
-1. - Trabalho
-2. - Estudos
-3. - Lazer
-4. - Esporte
-### Organização da rotina,através de:
-1. - Data
-2. - Cronômetro
-3. - Metas diárias / semanais
+### 1° Problema:
+- Duas classes, ListaMetas e ListaTarefas no pacote 'módulos', apresentam código com muita semelhança,desde os métodos até os atributos utilizados.Logo, fez-se necessário a utilização do padrão "Extract methods".Com isso, criei uma classe chamaada 'DadosLista' que irá ter esse metódos e atributos comuns entre as duas classes, evitando assim a duplicação de código.
 
-# FUNCIONALIDADES:
-1. - Adicionar Tarefas
-2. - Cronometrar horas de tarefas
-3. - Excluir tarefas
-4. - % de tarefas batidas
-5. - Adicionar metas
-6. - Excluir metas 
-7. - Check-list em metas
-8. - Check-list em tarefas
-9. - % de metas batidas
-10. - Alterar data das metas/tarefas
-11. - Sistema de login e senha
-12. - Buscar tarefas/metas
-13. - Cadastramento
-14. - Inserir horas manualmente
+### 2° Problema:
+- Ainda nas duas classes anteriores, ListaMetas e ListaTarefas no pacote 'módulos', tínhamos uma responsabilidade que era dada as duas classes, que não deveria existir ali, porque fazia com que a coesão do código fosse baixa.O problema era uma função que formatava as horas, a solução foi criar uma classe específica("FormatarHoras") para tratar as horas.Aplicamos ,então, a extract class.
 
+### 3° Problema:
+- Nas classes listarMetas,listarTarefas,FrameBusca havia muito código duplicado nos construtores da aplicação.Com isso, utilizei do padrão "Chain constructor" para evitar essa duplicação de código.
 
-# Rodar a aplicação:
-1. - Ide NetBeans
-
-
+## Obsevação:
+- O projeto antes da refatoração encontra-se na branch 'nao-refatorado'
